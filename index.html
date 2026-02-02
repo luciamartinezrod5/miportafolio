@@ -2,204 +2,518 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>portafolio | luci</title>
+  <title>Portfolio | Luci Martínez</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- google font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #f7f7f8;
+      --bg: #fffaf4;
       --card: #ffffff;
+      --border: #f2e6d8;
       --text: #1f2933;
       --muted: #6b7280;
-      --accent: #7c6cff;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      --accent: #f59e0b;
+      --accent-2: #ea580c;
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      scroll-behavior: smooth;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
+    h1, h2, h3, h4, h5, h6{
+      font-family: "tahoma"
     }
 
-    header {
-      margin-bottom: 60px;
+
+    /* NAV */
+    .navbar {
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,.8);
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      font-weight: 600;
+    /* HERO */
+    .hero-img {
+      filter: drop-shadow(0 40px 80px rgba(245,158,11,.35));
     }
 
-    header p {
-      margin-top: 10px;
-      color: var(--muted);
-      max-width: 600px;
-    }
-
-    section {
-      margin-bottom: 50px;
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      margin-bottom: 20px;
-    }
-
+    /* CARDS */
     .card {
-      background-color: var(--card);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      transition: transform .4s ease, box-shadow .4s ease;
     }
 
-    .card h3 {
-      margin-bottom: 8px;
-      font-weight: 500;
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 40px 90px rgba(234,88,12,.25);
     }
 
-    .card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .tags {
-      margin-top: 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
+    /* TAGS */
     .tag {
-      background-color: rgba(138, 123, 251, 0.1);
-      color: var(--accent);
-      padding: 4px 10px;
+      background: rgba(245,158,11,.15);
+      color: #b45309;
+      padding: 6px 14px;
       border-radius: 999px;
-      font-size: 0.8rem;
+      font-size: .8rem;
     }
 
-    .skills {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+    /* LINKS */
+    a.link {
+      color: var(--text);
+      font-weight: 500;
+      text-decoration: none;
+      position: relative;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    a.link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width .3s ease;
+    }
+
+    a.link:hover::after {
+      width: 100%;
+    }
+
+    /* IMAGES */
+    .preview-img img {
+      border-radius: 20px;
+      transition: transform .4s ease;
+    }
+
+    .preview-img:hover img {
+      transform: scale(1.05);
     }
 
     footer {
-      margin-top: 80px;
-      text-align: center;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: .9rem;
     }
 
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-      margin: 0 8px;
-    }
+    /* EDUCACION */
+.edu-card {
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, #fff, #fffaf3);
+  box-shadow: 0 20px 50px rgba(245,158,11,.15);
+  transition: transform .4s ease, box-shadow .4s ease;
+}
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-    }
+.edu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 35px 80px rgba(234,88,12,.25);
+}
+
+.edu-logo {
+  height: 42px;
+  object-fit: contain;
+}
+
+.edu-tag {
+  display: inline-block;
+  background: rgba(245,158,11,.15);
+  color: #b45309;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: .75rem;
+  margin: 3px 4px 0 0;
+}
+
+.btn-demo,
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  text-decoration: none;
+  transition: all .35s ease;
+  box-shadow: 0 12px 30px rgba(234,88,12,.35);
+}
+
+.btn-demo:hover,
+.btn-download:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 45px rgba(234,88,12,.55);
+  color: #fff;
+}
+
+
   </style>
 </head>
+
 <body>
 
+<!-- NAV -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-semibold" href="#home">Lucía Martínez</a>
+    <div>
+      <a class="link me-3" href="#proyectos">Proyectos</a>
+      <a class="link me-3" href="#formacion">Formación académica</a>
+      <a class="link me-3" href="#certificaciones">Certificaciones</a>
+
+      <a class="link" href="#contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container pt-5 mt-5" id="home">
+
+<!-- HERO -->
+<section class="row align-items-center py-5">
+  <div class="col-lg-6" data-aos="fade-up">
+    <h1 class="display-4 mb-3">Hola, soy Lucía Martínez</h1>
+    <p class="text-muted fs-5">
+      Estudiante de Ingeniería en Sistemas enfocada en el desarrollo de soluciones web
+      funcionales, claras y visualmente cuidadas, combinando lógica, automatización y diseño.
+    </p>
+  </div>
+
+  <div class="col-lg-6 text-center" data-aos="fade-left">
+    <img src="imagenes/portada.png" class="img-fluid hero-img" alt="Ilustración desarrollo web">
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos" class="py-5">
+  <h2 class="mb-4" data-aos="fade-up">Proyectos Destacados:</h2>
+
+  <!-- BIBLIOTECA -->
+  <div class="card p-4 mb-5" data-aos="fade-up">
+    <div class="row g-4 align-items-center">
+      <div class="col-md-6">
+        <h4>Biblioteca virtual</h4>
+        <p class="text-muted">
+          Sistema web desarrollado para el Colegio San José durante una pasantía de dos meses.
+          El proyecto fue diseñado e implementado íntegramente por mí, abarcando el desarrollo
+          front-end, la estructura de la base de datos y la supervisión de la correcta carga
+          de todos los registros.
+        </p>
+        <p class="text-muted"><strong>Destinatario:</strong> Colegio San José</p>
+
+        <div class="d-flex gap-2 mb-3">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">PHP</span>
+          <span class="tag">MySQL</span>
+        </div>
+
+        <a class="link me-4" href="https://github.com/luciamartinezrod5/bibliotecaVirtual" target="_blank">
+          <i class="bi bi-github"></i> GitHub
+        </a>
+        <a class="link" href="https://bibliotecavirtualcsj.com/biblioteca_virtual/iniciar_sesion.php" target="_blank">
+          <i class="bi bi-box-arrow-up-right"></i> Demo
+        </a>
+      </div>
+
+      <div class="col-md-6 preview-img">
+        <img src="imagenes/portada1.png" class="img-fluid" alt="Preview biblioteca">
+      </div>
+    </div>
+  </div>
+
+  <!-- WEBHOOK ASISTENCIAS -->
+  <div class="card p-4 mb-5" data-aos="fade-up">
+    <div class="row g-4 align-items-center">
+      <div class="col-md-6 preview-img">
+        <img src="imagenes/portada2.png" class="img-fluid" alt="Webhook asistencias">
+      </div>
+
+      <div class="col-md-6">
+        <h4>Webhook de asistencias</h4>
+        <p class="text-muted">
+          Automatización desarrollada para JL Tarjetas Web que recibe confirmaciones de asistencia
+          a eventos, registra los datos en Google Sheets y envía un correo automático diario con
+          el resumen de los registros.
+        </p>
+        <p class="text-muted"><strong>Origen:</strong> JL Tarjetas Web</p>
+
+        <div class="d-flex gap-2 mb-3">
+          <span class="tag">Google Apps Script</span>
+          <span class="tag">Webhook</span>
+          <span class="tag">Email automation</span>
+          <span class="tag">Google Sheets</span>
+        </div>
+
+        <a class="link me-4" href="https://github.com/luciamartinezrod5/webhook-confirmar-asistencia" target="_blank">
+          <i class="bi bi-github"></i> GitHub
+        </a>
+        <a class="link" href="https://script.google.com/d/1y3au1qFzrRrXKeGBvDnsMeWw-b4KT6_T9mZ5qQwFrCClzf7y26CGpfD1/edit" target="_blank">
+          <i class="bi bi-google"></i> Apps Script
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEBHOOK PLAYLIST -->
+  <div class="card p-4" data-aos="fade-up">
+    <div class="row g-4 align-items-center">
+      <div class="col-md-6">
+        <h4>Webhook de recomendación de playlist</h4>
+        <p class="text-muted">
+          Sistema que permite a los invitados recomendar canciones para eventos.
+          Las sugerencias se almacenan automáticamente en Google Sheets y se envía
+          un correo diario con las recomendaciones recibidas.
+        </p>
+        <p class="text-muted"><strong>Origen:</strong> JL Tarjetas Web</p>
+
+        <div class="d-flex gap-2 mb-3">
+          <span class="tag">Google Apps Script</span>
+          <span class="tag">Email automation</span>
+          <span class="tag">Webhook</span>
+          <span class="tag">Google Sheets</span>
+        </div>
+
+        <a class="link me-4" href="https://github.com/luciamartinezrod5/webhook-recomendacion-playlist" target="_blank">
+          <i class="bi bi-github"></i> GitHub
+        </a>
+        <a class="link" href="https://script.google.com/d/1s_whC1HhOUt3mI_FicxWgh9b8VJ2qWRRLjESEP_dNNqVk7aUAlnpoDMM/edit" target="_blank">
+          <i class="bi bi-google"></i> Apps Script
+        </a>
+      </div>
+
+      <div class="col-md-6 preview-img">
+        <img src="imagenes/portada3.png" class="img-fluid" alt="Webhook playlist">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="formacion" class="py-5">
   <div class="container">
 
-    <header>
-      <h1>Hola, soy luci</h1>
-      <p>
-        estudiante de ingeniería en sistemas. me interesa el desarrollo de software,
-        el diseño de soluciones simples y los proyectos que mezclan lógica y creatividad.
+
+    <!-- FORMACION ACADEMICA -->
+    <div class="mb-5" data-aos="fade-up">
+      <h2 class="mb-4" data-aos="fade-up">Formación Académica:</h2>
+
+      <!-- UTN -->
+      <div class="card p-4 edu-card mb-4">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <img src="imagenes/utn-logo.png" alt="UTN" class="edu-logo">
+          <div>
+            <h5 class="mb-1">Universidad Tecnológica Nacional</h5>
+            <p class="text-muted mb-0">
+              Ingeniería en Sistemas de la Información
+            </p>
+          </div>
+        </div>
+
+        <p class="text-muted mb-2">
+          Marzo 2024 – Marzo 2029
+        </p>
+
+        <p class="text-muted">
+        Actualmente cursando el <strong>tercer año</strong> de la carrera.
+        Promedio general con <strong>nota mínima de 8</strong>.
+        Primer y segundo año <strong>completamente aprobados</strong>.
+        Actualmente no cuento con <strong>ningún aplazo</strong>.
       </p>
-    </header>
 
-    <section>
-      <h2>Proyectos</h2>
+      <div class="d-flex gap-2 mb-3">
+          <span class="tag">UML</span>
+          <span class="tag">Python</span>
+          <span class="tag">Diseño de UI</span>
+          <span class="tag">POO</span>
+          <span class="tag">Metodologías Agiles</span>
+        </div>
 
-      <div class="card">
-  <h3>biblioteca virtual</h3>
-  <p>
-    sistema web para la gestión de una biblioteca.
-    desarrollé el front-end y participé en la organización y carga de datos,
-    con una aplicación funcionando actualmente en producción.
-  </p>
+      <a class="link" href="docs/Certificado_Alumno_Regular.pdf" download>
+      <i class="bi bi-download"></i> Descargar certificado de alumno regular
+      </a>
 
-  <div class="tags">
-    <span class="tag">html</span>
-    <span class="tag">css</span>
-    <span class="tag">php</span>
-    <span class="tag">base de datos</span>
+
+      </div>
+
+      <!-- SECUNDARIO -->
+      <div class="card p-4 edu-card">
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <i class="bi bi-mortarboard-fill fs-2 text-warning"></i>
+          <div>
+            <h5 class="mb-1">Colegio San José</h5>
+            <p class="text-muted mb-0">
+              Bachiller en Informática
+            </p>
+          </div>
+        </div>
+
+        <p class="text-muted mb-2">
+          2010 – 2023 · Promedio: <strong>9.45</strong> · 
+          <strong>Sin aplazos</strong> · 
+          Distinción: <strong>Primera escolta de la bandera nacional</strong>
+        </p>
+
+        <div class="d-flex gap-2 mb-3">
+          <span class="tag">Java</span>
+          <span class="tag">Python</span>
+          <span class="tag">Wordpress</span>
+          <span class="tag">POO</span>
+          <span class="tag">Metodologías Agiles</span>
+        </div>
+
+         <a class="link" href="docs/Analitico_Secundario.pdf" download>
+              <i class="bi bi-download"></i> Descargar Analítico
+            </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificaciones" data-aos="fade-up">
+    <!-- CERTIFICACIONES -->
+    <div data-aos="fade-up">
+      <h2 class="mb-4" data-aos="fade-up">Licencias y Certifiaciones:</h2>
+
+      <div class="row g-4">
+
+        <!-- CERT 1 -->
+        <div class="col-md-4">
+          <div class="card p-4 edu-card h-100">
+           <div class="d-flex align-items-center gap-2 mb-2">
+            <img src="imagenes/unc-logo.jpg" alt="UNC" class="edu-logo">
+            <h5>
+              IA y automatización de flujos de trabajo
+            </h5>
+          </div>
+
+
+            <p class="text-muted mb-1">
+              Universidad Nacional de Córdoba
+            </p>
+
+            <p class="text-muted mb-3">
+              Expedición: febrero 2026
+            </p>
+
+            <div class="mb-3">
+              <span class="edu-tag">n8n</span>
+              <span class="edu-tag">Workflow</span>
+              <span class="edu-tag">IA</span>
+              <span class="edu-tag">Web Services API</span>
+            </div>
+            
+            <a class="link" href="docs/Certificado_de_Aprobacion1.pdf" download>
+              <i class="bi bi-download"></i> Descargar certificado
+            </a>
+          </div>
+        </div>
+
+        <!-- CERT 2 -->
+        <div class="col-md-4">
+          <div class="card p-4 edu-card h-100">
+            <div class="d-flex align-items-center gap-2 mb-2">
+            <img src="imagenes/unc-logo.jpg" alt="UNC" class="edu-logo">
+            <h5>
+              Aprendiendo a caminar en Python - Certifiación 2
+            </h5>
+          </div>
+
+            <p class="text-muted mb-1">
+              Universidad Nacional de Córdoba
+            </p>
+
+            <p class="text-muted mb-3">
+              Expedición: enero 2026
+            </p>
+
+            <div class="mb-3">
+              <span class="edu-tag">Python</span>
+              <span class="edu-tag">JupyterLab</span>
+              <span class="edu-tag">POO</span>
+              <span class="edu-tag">Markdown</span>
+            </div>
+
+            <a class="link" href="docs/Certificado_de_Aprobacion3.pdf" download>
+              <i class="bi bi-download"></i> Descargar certificado
+            </a>
+
+          </div>
+        </div>
+
+        <!-- CERT 3 -->
+        <div class="col-md-4">
+          <div class="card p-4 edu-card h-100">
+           <div class="d-flex align-items-center gap-2 mb-2">
+            <img src="imagenes/unc-logo.jpg" alt="UNC" class="edu-logo">
+            <h5>
+              Aprendiendo a caminar en Python - Certifiación 1
+            </h5>
+          </div>
+
+            <p class="text-muted mb-1">
+              Universidad Nacional de Córdoba
+            </p>
+
+            <p class="text-muted mb-3">
+              Expedición: enero 2026
+            </p>
+
+            <div class="mb-3">
+              <span class="edu-tag">Python</span>
+              <span class="edu-tag">NumPy</span>
+              <span class="edu-tag">Seaborn</span>
+              <span class="edu-tag">Matplotlib</span>
+            </div>
+
+             <a class="link" href="docs/Certificado_de_Aprobacion2.pdf" download>
+              <i class="bi bi-download"></i> Descargar certificado
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
+</section>
 
-  <p style="margin-top: 14px;">
-    🔗
-    <a href="https://github.com/luciamartinezrod5/bibliotecaVirtual" target="_blank">
-      github
-    </a>
-    ·
-    <a href="https://bibliotecavirtualcsj.com/biblioteca_virtual/iniciar_sesion.php" target="_blank">
-      demo
-    </a>
-    ·
-    <a href="https://www.instagram.com/p/CzMyDxPRhk4/" target="_blank">
-      video pitch
-    </a>
-  </p>
+
+<!-- CONTACTO -->
+<section id="contacto" class="text-center py-5">
+  <a class="link me-4" href="https://github.com/luciamartinezrod5" target="_blank">
+    <i class="bi bi-github"></i> GitHub
+  </a>
+  <a class="link me-4" href="https://www.linkedin.com/in/luc%C3%ADa-mart%C3%ADnez-253589268/" target="_blank">
+    <i class="bi bi-linkedin"></i> LinkedIn
+  </a>
+  <a class="link" href="mailto:luciamartinezrod5@gmail.com">
+    <i class="bi bi-envelope"></i> Email
+  </a>
+</section>
+
+<footer class="text-center py-3">
+  © Luci Martínez · Ingeniería en Sistemas
+</footer>
+
 </div>
 
-
-    </section>
-
-    <section>
-      <h2>conocimientos</h2>
-
-      <div class="skills">
-        <div class="card">
-          <h3>lenguajes</h3>
-          <p>python, html, css, javascript (básico)</p>
-        </div>
-
-        <div class="card">
-          <h3>herramientas</h3>
-          <p>git, github, notion, bases de datos</p>
-        </div>
-
-        <div class="card">
-          <h3>conceptos</h3>
-          <p>lógica, estructuras de datos, análisis de sistemas</p>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <p>
-        <a href="#">github</a> ·
-        <a href="#">linkedin</a> ·
-        <a href="mailto:tuemail@gmail.com">mail</a>
-      </p>
-    </footer>
-
-  </div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({ duration: 900, once: true });</script>
 
 </body>
 </html>
