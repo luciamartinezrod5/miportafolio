@@ -68,7 +68,12 @@
       padding: 6px 14px;
       border-radius: 999px;
       font-size: .8rem;
+      display: inline-block;
+      margin: 4px 4px 4px 0;
+      white-space: nowrap;
     }
+
+
 
     /* LINKS */
     a.link {
@@ -130,13 +135,15 @@
 }
 
 .edu-tag {
-  display: inline-block;
+
   background: rgba(245,158,11,.15);
   color: #b45309;
   padding: 6px 14px;
   border-radius: 999px;
   font-size: .75rem;
-  margin: 3px 4px 0 0;
+   display: inline-block;
+      margin: 4px 4px 4px 0;
+      white-space: nowrap;
 }
 
 .btn-demo,
@@ -162,6 +169,31 @@
   color: #fff;
 }
 
+.scroll-indicator {
+  margin-top: 20px;
+  color: var(--muted);
+  animation: bounce 2s infinite;
+  opacity: .7;
+}
+
+.scroll-indicator i {
+  font-size: 1.8rem;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(8px); }
+  60% { transform: translateY(4px); }
+}
+
+#contenido {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+#contenido.visible {
+  opacity: 1;
+}
+
 
   </style>
 </head>
@@ -172,12 +204,20 @@
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
     <a class="navbar-brand fw-semibold" href="#home">Lucía Martínez</a>
-    <div>
-      <a class="link me-3" href="#proyectos">Proyectos</a>
-      <a class="link me-3" href="#formacion">Formación académica</a>
-      <a class="link me-3" href="#certificaciones">Certificaciones</a>
 
-      <a class="link" href="#contacto">Contacto</a>
+    <!-- BOTÓN HAMBURGUESA -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- MENÚ -->
+    <div class="collapse navbar-collapse" id="menuNav">
+      <div class="ms-auto">
+        <a class="link me-3 d-block d-lg-inline" href="#proyectos">Proyectos</a>
+        <a class="link me-3 d-block d-lg-inline" href="#formacion">Formación académica</a>
+        <a class="link me-3 d-block d-lg-inline" href="#certificaciones">Certificaciones</a>
+        <a class="link d-block d-lg-inline" href="#contacto">Contacto</a>
+      </div>
     </div>
   </div>
 </nav>
@@ -199,6 +239,12 @@
   </div>
 </section>
 
+<div class="scroll-indicator text-center">
+  <p>Deslizá</p>
+  <i class="bi bi-chevron-down"></i>
+</div>
+
+<div id="contenido">
 <!-- PROYECTOS -->
 <section id="proyectos" class="py-5">
   <h2 class="mb-4" data-aos="fade-up">Proyectos Destacados:</h2>
@@ -216,7 +262,7 @@
         </p>
         <p class="text-muted"><strong>Destinatario:</strong> Colegio San José</p>
 
-        <div class="mb-3">
+        <div class="mb-3 d-flex flex-wrap">
           <span class="tag">HTML</span>
           <span class="tag">CSS</span>
           <span class="tag">PHP</span>
@@ -253,7 +299,7 @@
         </p>
         <p class="text-muted"><strong>Origen:</strong> JL Tarjetas Web</p>
 
-        <div class="mb-3">
+        <div class="mb-3 d-flex flex-wrap">
           <span class="tag">Google Apps Script</span>
           <span class="tag">Webhook</span>
           <span class="tag">Email automation</span>
@@ -282,7 +328,7 @@
         </p>
         <p class="text-muted"><strong>Origen:</strong> JL Tarjetas Web</p>
 
-        <div class="mb-3">
+        <div class="mb-3 d-flex flex-wrap">
           <span class="tag">Google Apps Script</span>
           <span class="tag">Email automation</span>
           <span class="tag">Webhook</span>
@@ -335,7 +381,7 @@
         Actualmente no cuento con <strong>ningún aplazo</strong>.
       </p>
 
-      <div class="mb-3">
+      <div class="mb-3 d-flex flex-wrap">
           <span class="tag">UML</span>
           <span class="tag">Python</span>
           <span class="tag">Diseño de UI</span>
@@ -368,7 +414,7 @@
           Distinción: <strong>Primera escolta de la bandera nacional</strong>
         </p>
 
-        <div class="mb-3">
+        <div class="mb-3 d-flex flex-wrap">
           <span class="tag">Java</span>
           <span class="tag">Python</span>
           <span class="tag">Wordpress</span>
@@ -409,7 +455,7 @@
               Expedición: febrero 2026
             </p>
 
-            <div class="mb-3">
+            <div class="mb-3 d-flex flex-wrap">
               <span class="edu-tag">n8n</span>
               <span class="edu-tag">Workflow</span>
               <span class="edu-tag">IA</span>
@@ -440,7 +486,7 @@
               Expedición: enero 2026
             </p>
 
-            <div class="mb-3">
+            <div class="mb-3 d-flex flex-wrap">
               <span class="edu-tag">Python</span>
               <span class="edu-tag">JupyterLab</span>
               <span class="edu-tag">POO</span>
@@ -472,7 +518,7 @@
               Expedición: enero 2026
             </p>
 
-            <div class="mb-3">
+            <div class="mb-3 d-flex flex-wrap">
               <span class="edu-tag">Python</span>
               <span class="edu-tag">NumPy</span>
               <span class="edu-tag">Seaborn</span>
@@ -510,8 +556,18 @@
 <footer class="text-center py-3">
   © Luci Martínez · Ingeniería en Sistemas 
 </footer>
-
 </div>
+</div>
+<script>
+window.addEventListener("scroll", () => {
+  const contenido = document.getElementById("contenido");
+  if (window.scrollY > 150) {
+    contenido.classList.add("visible");
+  }
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>AOS.init({ duration: 900, once: true });</script>
